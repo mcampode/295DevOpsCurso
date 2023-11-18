@@ -2,15 +2,18 @@
 
 # Configura el token de acceso de tu bot de Discord
 DISCORD="https://discord.com/api/webhooks/1169002249939329156/7MOorDwzym-yBUs3gp0k5q7HyA42M5eYjfjpZgEwmAx1vVVcLgnlSh4TmtqZqCtbupov"
+MIREPO="295DevOpsCurso"
+MIBRANCH="tarea1"
 
 # Verifica si se proporcionó el argumento del directorio del repositorio
-if [ $# -ne 1 ]; then
-  echo "Uso: $0 https://github.com/mcampode/295DevOpsCurso.git"
-  exit 1
+if [ -d $MIREPO ]; then
+  echo "Uso del repo https://github.com/mcampode/$MIREPO.git"
+else 
+  git clone -b $MIBRANCH https://github.com/mcampode/$MIREPO.git
 fi
 
 # Cambia al directorio del repositorio
-cd "$1"
+cd $MIREPO
 
 # Obtiene el nombre del repositorio
 REPO_NAME=$(basename $(git rev-parse --show-toplevel))
